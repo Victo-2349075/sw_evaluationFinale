@@ -1,0 +1,23 @@
+{
+  "name": "sw_evaluationfinale",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victo-2349075/sw_evaluationFinale.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Victo-2349075/sw_evaluationFinale/issues"
+  },
+  "homepage": "https://github.com/Victo-2349075/sw_evaluationFinale#readme",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
