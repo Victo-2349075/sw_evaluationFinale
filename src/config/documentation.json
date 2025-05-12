@@ -1,0 +1,248 @@
+
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Gestion des Tâches",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/taches": {
+      "get": {
+        "summary": "Obtenir toutes les tâches",
+        "security": [{ "ApiKeyAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Liste des tâches"
+          }
+        }
+      },
+      "post": {
+        "summary": "Créer une tâche",
+        "security": [{ "ApiKeyAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["titre", "description"],
+                "properties": {
+                  "titre": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Tâche créée"
+          }
+        }
+      }
+    },
+    "/taches/{id}": {
+      "get": {
+        "summary": "Obtenir une tâche par ID",
+        "security": [{ "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tâche récupérée"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Supprimer une tâche",
+        "security": [{ "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tâche supprimée"
+          }
+        }
+      }
+    },
+    "/taches/{id}/statut": {
+      "patch": {
+        "summary": "Mettre à jour le statut d’une tâche",
+        "security": [{ "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["statut"],
+                "properties": {
+                  "statut": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Statut mis à jour"
+          }
+        }
+      }
+    },
+    "/taches/{id}/sous-taches": {
+      "post": {
+        "summary": "Ajouter une sous-tâche",
+        "security": [{ "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["titre"],
+                "properties": {
+                  "titre": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sous-tâche ajoutée"
+          }
+        }
+      }
+    },
+    "/sous-taches/{subtaskId}": {
+      "put": {
+        "summary": "Modifier une sous-tâche",
+        "security": [{ "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "subtaskId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "titre": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sous-tâche modifiée"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Supprimer une sous-tâche",
+        "security": [{ "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "subtaskId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sous-tâche supprimée"
+          }
+        }
+      }
+    },
+    "/sous-taches/{subtaskId}/statut": {
+      "patch": {
+        "summary": "Mettre à jour le statut d’une sous-tâche",
+        "security": [{ "ApiKeyAuth": [] }],
+        "parameters": [
+          {
+            "name": "subtaskId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["statut"],
+                "properties": {
+                  "statut": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Statut de la sous-tâche mis à jour"
+          }
+        }
+      }
+    }
+  }
+}
