@@ -56,7 +56,7 @@ const getOrGenerateApiKey = (req, res) => {
 
     if (nouveau) {
       const newKey = crypto.randomBytes(32).toString("hex");
-      sql.query("UPDATE utilisateur SET api_key = $1 WHERE id = $2", [newKey, user.id], (err) => {
+      sql.query("UPDATE utilisateur SET cle_api = $1 WHERE id = $2", [newKey, user.id], (err) => {
         if (err) return res.status(500).json({ message: "Erreur DB", error: err });
         return res.json({ apiKey: newKey });
       });
