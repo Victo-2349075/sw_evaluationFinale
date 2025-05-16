@@ -10,20 +10,18 @@
 import sql from "../config/db_pg.js";
 
 export const apiKeyAuth = (req, res, next) => {
-  
   const routesPubliques = [
-    { method: 'POST', path: '/api/utilisateurs' },
-    { method: 'POST', path: '/api/utilisateurs/cle' },
-    { method: 'PUT',  path: '/api/utilisateurs/cle' }
+    { method: 'POST', path: '/api/utilisateur' },
+    { method: 'POST', path: '/api/utilisateur/cle' },
+    { method: 'PUT',  path: '/api/utilisateur/cle' }
   ];
 
   const estRoutePublique = routesPubliques.some(route =>
-    route.method === req.method && req.originalUrl.startsWith(route.path)
+    route.method === req.method &&
+    req.originalUrl.split('?')[0] === route.path
   );
 
-  if (estRoutePublique) {
-    return next();
-  }
+  if (estRoutePublique) return next();
 
   const apiKey = req.headers["x-api-key"];
   if (!apiKey) return res.status(401).json({ message: "Clé API manquante" });

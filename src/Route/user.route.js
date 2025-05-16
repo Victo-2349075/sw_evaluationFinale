@@ -6,7 +6,7 @@ import userController from '../Controller/user.controller.js';
 
 const router = express.Router();
 
-router.post('/utilisateurs', userController.createUser);
+router.post('/utilisateur', userController.createUser);
 router.post('/utilisateur/cle', userController.getOrGenerateApiKey);
 
 export default router;

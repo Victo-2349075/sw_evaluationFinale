@@ -1,4 +1,3 @@
-
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
@@ -22,7 +21,7 @@ app.use(morgan('dev'));
 // Middleware pour analyser les corps de requête JSON
 app.use(express.json());
 
-
+// Middleware de documentation Swagger
 const swaggerDocument = JSON.parse(fs.readFileSync('./src/config/documentation.json', 'utf8'));
 const swaggerOptions = {
   customCss: '.swagger-ui .topbar { display: none }',
@@ -30,10 +29,10 @@ const swaggerOptions = {
 };
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 
-
-app.use('/api/users', userRouter); 
-
 app.use(apiKeyAuth);
+
+
+app.use('/api', userRouter);
 
 
 app.use('/api/tasks', taskRouter);
@@ -47,4 +46,3 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Serveur démarré sur http://localhost:${PORT}`);
 });
-//https://services-web-victo.github.io/notes_de_cours/api/documentation/#exemple pour parametre et response
