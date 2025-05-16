@@ -14,7 +14,7 @@ export const apiKeyAuth = (req, res, next) => {
 
   if (!apiKey) return res.status(401).json({ message: "Clé API manquante" });
 
-  sql.query("SELECT * FROM utilisateur WHERE api_key = $1", [apiKey], (err, result) => {
+  sql.query("SELECT * FROM utilisateur WHERE cle_api = $1", [apiKey], (err, result) => {
     if (err) return res.status(500).json({ message: "Erreur DB", error: err });
     if (result.rows.length === 0) return res.status(403).json({ message: "Clé API invalide" });
 
