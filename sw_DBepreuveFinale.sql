@@ -2,12 +2,12 @@ create DATABASE IF NOT EXISTS sw_epreuve_finale;
 
 USE sw_epreuve_finale;
 
-
+drop DATABASE sw_epreuve_finale;
 DROP TABLE IF EXISTS sous_taches;
 DROP TABLE IF EXISTS taches;
-DROP TABLE IF EXISTS utilisateur;
-
-CREATE TABLE utilisateur (
+DROP TABLE IF EXISTS usager;
+/*users a place utilisateur me suis perdu dans mon code car user utilisateur*/
+CREATE TABLE usager (
    id SERIAL PRIMARY KEY,
    nom VARCHAR(30),
    prenom VARCHAR(30),

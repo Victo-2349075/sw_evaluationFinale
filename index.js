@@ -31,7 +31,7 @@ const swaggerOptions = {
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 
 
-app.use('/api/users', userRouter); // Pas besoin de clé API
+app.use('/api/users', userRouter); 
 
 app.use(apiKeyAuth);
 
