@@ -48,7 +48,7 @@ const getOrGenerateApiKey = (req, res) => {
   sql.query("SELECT * FROM utilisateur WHERE courriel = $1", [courriel], (err, result) => {
     if (err) return res.status(500).json({ message: "Erreur DB", error: err });
     if (result.rows.length === 0) return res.status(404).json({ message: "Utilisateur non trouvé" });
-
+    console.log(mot_de_passe);
     const user = result.rows[0];
     if (!bcrypt.compare(mot_de_passe, user.mot_de_passe)) {
       return res.status(401).json({ message: "Mot de passe invalide" });
