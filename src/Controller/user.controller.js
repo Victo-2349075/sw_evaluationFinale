@@ -19,7 +19,7 @@ const createUser = (req, res) => {
     return res.status(400).json({ message: "Champs manquants" });
   }
 
-  const hash = bcrypt.hashSync(mot_de_passe, 10);
+  const hash = bcrypt.hash(mot_de_passe, 10);
   const apiKey = crypto.randomBytes(32).toString("hex");
 
   sql.query(
