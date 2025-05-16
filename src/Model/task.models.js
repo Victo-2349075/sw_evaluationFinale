@@ -16,7 +16,7 @@ const Task = {
    * Crée une nouvelle tâche pour un utilisateur.
    */
   create(titre, description, userId, cb) {
-    db.query("INSERT INTO taches (titre, description, utilisateur_id) VALUES ($1, $2, $3)", [titre, description, userId], cb);
+    db.query("INSERT INTO taches (titre, description, utilisateur_id) VALUES ($1, $2, $3) RETURNING id", [titre, description, userId], cb);
   },
   
    // Supprime une tâche appartenant à un utilisateur.
