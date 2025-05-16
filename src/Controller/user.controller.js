@@ -23,7 +23,7 @@ const createUser = (req, res) => {
   const apiKey = crypto.randomBytes(32).toString("hex");
 
   sql.query(
-    "INSERT INTO utilisateur (prenom, nom, courriel, mot_de_passe, api_key) VALUES ($1, $2, $3, $4, $5) RETURNING id",
+    "INSERT INTO utilisateur (prenom, nom, courriel, password, cle_api) VALUES ($1, $2, $3, $4, $5) RETURNING id",
     [prenom, nom, courriel, hash, apiKey],
     (err, result) => {
       if (err) return res.status(500).json({ message: "Erreur DB", error: err });
