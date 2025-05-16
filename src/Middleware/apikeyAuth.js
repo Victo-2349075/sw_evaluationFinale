@@ -31,6 +31,8 @@ export const apiKeyAuth = (req, res, next) => {
     if (result.rows.length === 0) return res.status(403).json({ message: "Clé API invalide" });
 
     req.userId = result.rows[0].id;
+    console.log(req.userId);
+    console.log(result.rows[0].id)
     next();
   });
 };
