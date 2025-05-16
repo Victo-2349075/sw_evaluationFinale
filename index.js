@@ -35,7 +35,7 @@ app.use(apiKeyAuth);
 app.use('/api', userRouter);
 
 
-app.use('/api/tasks', taskRouter);
+app.use('/api/taches', taskRouter);
 
 
 app.use((req, res) => {
