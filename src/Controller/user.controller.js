@@ -50,7 +50,7 @@ const getOrGenerateApiKey = (req, res) => {
     if (result.rows.length === 0) return res.status(404).json({ message: "Utilisateur non trouvé" });
 
     const user = result.rows[0];
-    if (!bcrypt.compareSync(mot_de_passe, user.mot_de_passe)) {
+    if (!bcrypt.compare(mot_de_passe, user.mot_de_passe)) {
       return res.status(401).json({ message: "Mot de passe invalide" });
     }
 
