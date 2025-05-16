@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS sous_taches;
 DROP TABLE IF EXISTS taches;
 DROP TABLE IF EXISTS usager;
 /*users a place utilisateur me suis perdu dans mon code car user utilisateur*/
-CREATE TABLE usager (
+CREATE TABLE utilisateur (
    id SERIAL PRIMARY KEY,
    nom VARCHAR(30),
    prenom VARCHAR(30),

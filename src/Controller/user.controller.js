@@ -23,7 +23,7 @@ const createUser = (req, res) => {
   const apiKey = crypto.randomBytes(32).toString("hex");
 
   sql.query(
-    "INSERT INTO usager (prenom, nom, courriel, mot_de_passe, api_key) VALUES ($1, $2, $3, $4, $5) RETURNING id",
+    "INSERT INTO utilisateur (prenom, nom, courriel, mot_de_passe, api_key) VALUES ($1, $2, $3, $4, $5) RETURNING id",
     [prenom, nom, courriel, hash, apiKey],
     (err, result) => {
       if (err) return res.status(500).json({ message: "Erreur DB", error: err });
@@ -45,7 +45,7 @@ const getOrGenerateApiKey = (req, res) => {
     return res.status(400).json({ message: "Champs manquants" });
   }
 
-  sql.query("SELECT * FROM usager WHERE courriel = $1", [courriel], (err, result) => {
+  sql.query("SELECT * FROM utilisateur WHERE courriel = $1", [courriel], (err, result) => {
     if (err) return res.status(500).json({ message: "Erreur DB", error: err });
     if (result.rows.length === 0) return res.status(404).json({ message: "Utilisateur non trouvé" });
 
@@ -56,7 +56,7 @@ const getOrGenerateApiKey = (req, res) => {
 
     if (nouveau) {
       const newKey = crypto.randomBytes(32).toString("hex");
-      sql.query("UPDATE usager SET api_key = $1 WHERE id = $2", [newKey, user.id], (err) => {
+      sql.query("UPDATE utilisateur SET api_key = $1 WHERE id = $2", [newKey, user.id], (err) => {
         if (err) return res.status(500).json({ message: "Erreur DB", error: err });
         return res.json({ apiKey: newKey });
       });
