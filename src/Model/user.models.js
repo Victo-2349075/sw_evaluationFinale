@@ -5,7 +5,7 @@ module.exports = {
   // Ajouter un nouvel utilisateur avec mot de passe chiffré et clé API générée
   ajouter: async (nom, prenom, courriel, motdepasse, callback) => {
     const hash = await bcrypt.hash(motdepasse, 10); // Chiffre le mot de passe
-    const apiKey = crypto.randomBytes(16).toString('hex'); // Génère une clé API unique
+    const apiKey = crypto.randomBytes(32).toString('hex'); // Génère une clé API unique
     db.query('INSERT INTO utilisateur (nom, prenom, courriel, password, cle_api) VALUES ($1, $2, $3, $4, $5)',
       [nom, prenom, courriel, hash, apiKey], callback);
   },

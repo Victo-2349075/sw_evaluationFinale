@@ -12,7 +12,7 @@ CREATE TABLE utilisateur (
    nom VARCHAR(30),
    prenom VARCHAR(30),
    courriel VARCHAR(255),
-   cle_api VARCHAR(30),
+   cle_api VARCHAR(64),
    password VARCHAR(100)
 );
 
