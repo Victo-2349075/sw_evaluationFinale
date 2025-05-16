@@ -32,7 +32,7 @@ const Task = {
     db.query("SELECT * FROM taches WHERE id = $1 AND utilisateur_id = $2", [taskId, userId], (err, results) => {
       if (err) return cb(err);
       if (results.length === 0) return cb(null, null);
-      const task = results[0];
+      const task = results.rows[0];
       db.query("SELECT * FROM sous_taches WHERE tache_id = $1", [taskId], (err, subtasks) => {
         if (err) return cb(err);
         task.subtasks = subtasks.rows;
